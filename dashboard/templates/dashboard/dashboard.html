@@ -1,0 +1,77 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+        {% block content %}
+        
+            <!--/APP-SIDEBAR-->
+
+            <!--app-content open-->
+            <div class="main-content app-content mt-0">
+                <div class="side-app">
+
+                    <!-- CONTAINER -->
+                    <div class="main-container container-fluid">
+
+                        <!-- PAGE-HEADER -->
+                        <div class="page-header">
+                        <br><br>
+                            <h3 class="page-title">Boshqaruv paneli</h3>
+                        </div>
+                        <!-- PAGE-HEADER END -->
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+                                <div class="card bg-info img-card box-info-shadow">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="text-white">
+                                                <h2 class="mb-0 number-font">{{categorys_count}}</h2>
+                                                <p class="text-white mb-0">CATEGORYS</p>
+                                            </div>
+                                            <div class="ms-auto"><i</i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- COL END -->
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+                                <div class="card bg-secondary img-card box-secondary-shadow">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="text-white">
+                                                <h2 class="mb-0 number-font">{{products_count}}</h2>
+                                                <p class="text-white mb-0">PRODUCTS</p>
+                                            </div>
+                                            <div class="ms-auto"> <i class="fa fa-heart-o text-white fs-30 me-2 mt-2"></i> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- COL END -->
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+                                <div class="card bg-primary img-card box-primary-shadow">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="text-white">
+                                                <h2 class="mb-0 number-font">{{users}}</h2>
+                                                <p class="text-white mb-0">USERS </p>
+                                            </div>
+                                            <div class="ms-auto"> <i class="fa fa-user-o text-white fs-30 me-2 mt-2"></i> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- COL END -->
+                        </div>
+                        <!-- ROW-1 END -->
+
+                    </div>
+                    <!-- CONTAINER END -->
+                </div>
+            </div>
+            <!--app-content close-->
+        {% endblock %}
+
+{% block js %}
+<!-- js -->
+{% endblock %}

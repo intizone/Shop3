@@ -1,0 +1,48 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+Detail category
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid  dashboard-content">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Change category</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="d-flex justify-content-between">
+                        </div>
+                        <div class="card-body">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label for="category-name" class="col-sm-3 col-form-label">Input new name</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="category-name" name="name" value="{{category.name}}">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-info">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

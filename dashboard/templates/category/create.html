@@ -1,0 +1,37 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Create category{% endblock %}
+
+        {% block content %}
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid  dashboard-content">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">Add category</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <form action="" method="post">{% csrf_token %}
+                                            <label class="col-form-label">Input category name</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" name="name" ">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

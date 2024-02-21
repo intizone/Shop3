@@ -1,0 +1,68 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block css %}
+<!-- css -->
+{% endblock %}
+
+{% block title %}List category{% endblock %}
+
+        {% block content %}
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid  dashboard-content">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">CATEGORYS</h2>
+                            </div>
+                        </div>
+                    </div>
+                        <div id="custom-search" class="top-search-bar">
+                            <form action="{% url 'dashboard:search_view' %}" method="GET">
+                                <div style="display: flex; align-items: center;">
+                                    <input class="form-control" type="text" name="q" placeholder="Search.." style="color: black; width: 300px; background-color: green;">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                    
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped first">
+                                            <thead>
+                                                <tr>
+                                                    <th class="">№</th>
+                                                    <th>NAME</th>
+                                                    <th>EDIT</th>
+                                                    <th>DELETE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for category in categorys%}
+                                                <tr>
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td>{{category}}</td>
+                                                    <td><a href="{% url 'dashboard:detail_category' category.slug %}" class="btn btn-primary">Edit</a></td>
+                                                    <td href="{% url 'dashboard:delete_category' category.id %}" class="btn btn-danger">Delete</td>
+
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+{% block js %}
+<!-- js -->
+{% endblock %}

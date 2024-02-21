@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="single contact">
+    <div class="container">
+        <div class="single-main">
+            <div class="col-md-9 single-main-left">
+                <div class="sngl-top">
+                
+                    <div class="col-md-5 single-top-left">	
+                            <div class="flexslider">
+                                <ul class="slides">
+                                {% for img in images %}
+                                <li data-thumb="{{img.image.url}}">
+                                    <div class="thumb-image"> <img src="{{img.image.url}}" data-imagezoom="true" class="img-responsive" alt=""/> </div>
+                                </li>
+                                {% endfor %}
+                                </ul>
+                        </div>
+                        <!-- FlexSlider -->
+                        <script src="{% static 'js/imagezoom.js' %}"></script>
+                        <script defer="" src="{% static 'js/jquery.flexslider.js' %}"></script>
+                        <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen">
+
+                        <script>
+                        // Can also be used with $(document).ready()
+                        $(window).load(function() {
+                        $('.flexslider').flexslider({
+                            animation: "slide",
+                            controlNav: "thumbnails"
+                        });
+                        });
+                        </script>
+                    </div>	
+                    <div class="col-md-7 single-top-right">
+                        <div class="single-para simpleCart_shelfItem">
+                        <h2>{{product.name}}</h2>
+                            <div class="star-on">
+                                <ul class="star-footer">
+                                    {% for _ in range %}
+                                        <li><a href="#"><i> </i></a></li>
+                                    {% endfor %}
+                                    </ul>
+                            <div class="clearfix"> </div>
+                            </div>
+                            
+                            <h5 class="item_price"> {% if product.currency == 1 %} $ {{product.price}} {% else %} {{product.price}} so`m {% endif %}</h5>
+                            <p>{{product.description}}</p>
+                                <a href="{% url 'main:cart_create' product.id %}" class="add-cart item_add">ADD TO CART</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if res %}
+            <div>
+                <a href="{% url 'main:del_wish' product.id %}"><img class="material-symbols-outlined" src="{% static 'images/heart.png' %}" alt=""></a>
+            </div>
+            {% else %}
+            <div>
+                <a href="{% url 'main:add_wish' product.id %}"><img class="material-symbols-outlined" src="{% static 'images/heart_minus.png' %}" alt=""></a>
+            </div>
+            {% endif %}
+
+            <div class="latestproducts">
+                <div class="product-one">
+                    {% for product in recomendation %}
+                    <div class="col-md-4 product-left p-left"> 
+                        <div class="product-main simpleCart_shelfItem">
+                            <a href="{% url 'main:product_detail' product.id %}" class="mask"><img class="img-responsive zoom-img" src="{{product.baner_image.url}}" alt=""></a>
+                            <div class="product-bottom">
+                                <h3>{{product.name}}</h3>
+                                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">{% if product.currency == 1 %} $ {{product.price}} {% else %} {{product.price}} so`m {% endif %}</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
