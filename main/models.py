@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from functools import reduce
 from django.core.exceptions import ValidationError
-
+from unidecode import unidecode
+from django.utils.text import slugify
+from datetime import datetime
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -11,7 +13,7 @@ class Category(models.Model):
     slug = models.SlugField(blank=True)
 
     def save(self, *args, **kwargs):
-        self.slug = self.name.replace(' ', '-').lower()
+        self.slug = slugify((self.name))
         super(Category, self).save(*args, **kwargs)
 
 class Product(models.Model):
@@ -157,12 +159,10 @@ class EnterProduct(models.Model):
         return f"{self.quantity} {self.product_name}"
     
     slug = models.SlugField(blank=True)
-    def save(self, *args, **kwargs):
-        self.slug = self.product.slug
-        super(EnterProduct, self).save(*args, **kwargs)
         
-    
+
     def save(self, *args, **kwargs):
+        self.slug = slugify(unidecode(self.product.name)) + '-' + datetime.now().strftime("%Y-%m-%d")
         self.product_name = self.product.name
         if self.pk:
             enter = EnterProduct.objects.get(pk=self.pk)

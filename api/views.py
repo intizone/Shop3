@@ -3,12 +3,19 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from main.models import Product, Cart, Category
 from .serializers import *
-# from rest_framework.authentication import TokenAuthentication
-# from rest_framework.authtoken.models import Token
-# from django.contrib.auth import authenticate
 
+# authentication
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.authtoken.models import Token
 
 # category views functions
+
 @api_view(['GET'])
 def category_list(request):
     categorys = Category.objects.all()
@@ -16,7 +23,10 @@ def category_list(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def category_detail(request, slug):
     try:
         category = Category.objects.get(slug = slug)
@@ -25,6 +35,7 @@ def category_detail(request, slug):
 
     serializer = CategoryDetailSerializer(category)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 
 # product views functions
@@ -46,6 +57,8 @@ def product_detail(request, slug):
 
 # wishlist views function
 @api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def add_to_wishlist(request):
     serializer = WishListSerializer(data=request.data)
     if serializer.is_valid():
@@ -56,6 +69,8 @@ def add_to_wishlist(request):
 
 # review views function
 @api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def add_review(request):
     serializer = ProductReviewSerializer(data=request.data)
     if serializer.is_valid():
